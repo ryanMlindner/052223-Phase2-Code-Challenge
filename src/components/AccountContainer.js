@@ -25,7 +25,6 @@ function AccountContainer() {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       setTransactions(transactions => [...transactions, data]);
     })
   }
