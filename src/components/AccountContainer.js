@@ -3,6 +3,9 @@ import TransactionsList from "./TransactionsList";
 import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
 
+//in prod code, I would work to make this file less of a mess, but for the purposes of
+//the challenge, its probably fine.
+
 const APIURL = "http://localhost:8001/transactions"
 
 function AccountContainer() {
@@ -62,6 +65,15 @@ function AccountContainer() {
     setSortedDescription(sortedDescription => !sortedDescription);
   }
 
+  
+  function handleDelete(deletedTransaction) {
+    const updatedTransactions = transactions.filter(
+      transaction => 
+      transaction.id !== deletedTransaction.id
+      )
+    setTransactions(updatedTransactions);
+  }
+
   return (
     <div>
       <Search updateSearchTerm={updateSearchTerm}/>
@@ -72,7 +84,7 @@ function AccountContainer() {
         Toggle Description Sort
       </button>
       <AddTransactionForm addNewTransaction={addNewTransaction}/>
-      <TransactionsList transactions={filterTransactions()}/>
+      <TransactionsList transactions={filterTransactions()} handleDelete={handleDelete}/>
     </div>
   );
 }
