@@ -10,6 +10,7 @@ function Search({updateSearchTerm}) {
   function handleClick() {
     updateSearchTerm(searchTerm);
   }
+  
   return (
     <div className="ui large fluid icon input">
       <input
